@@ -1,34 +1,4 @@
- /* .container {
-     border: 2px dotted chocolate;
-     margin-top: 20px;
-     margin-right: 20px;
-     margin-left: 20px;
-     display: grid;
-     grid-template-columns: auto;
-     grid-gap: 100px;
-     background-color: coral;
-     padding: 12px;
- }
-  */
-
-/* CSS Module (global.module.css) */
-/* .container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-gap: 10px;
-    padding: 20px;
-    border: 2px dotted #ccc;
-}
-
-.navbar {
-    grid-column: span 2;
-}
-
-.footer {
-    grid-column: span 2;
-} */
-
-/* CSS Module (global.module.css) */
+/* Kontainer utama */
 .container {
     display: grid;
     grid-template-areas:
@@ -36,21 +6,88 @@
         "sidebar konten"
         "footer footer";
     grid-template-columns: 1fr 3fr;
-    /* Sidebar 1 bagian, Konten 3 bagian */
     grid-template-rows: auto 1fr auto;
     height: 100vh;
-    /* Menyusun grid di seluruh viewport */
 }
 
+/* Navbar */
 .navbar {
     grid-area: navbar;
-    background-color: #333;
+    background: linear-gradient(90deg, #0d47a1, #42a5f5);
     color: white;
     padding: 10px;
-    text-align: center;
-    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.navbar .brand {
+    font-size: 24px;
+}
+
+/* Hambuger icon */
+.hamburger {
+    display: none;
+    /* Hidden by default */
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Links */
+.navLinks {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navLinks li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navLinks li a:hover {
+    color: #ffeb3b;
+}
+
+/* Menyembunyikan menu pada mobile */
+@media(max-width: 700px) {
+    .hamburger {
+        display: block;
+        /* Show hamburger icon */
+    }
+
+    .navLinks {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: 0;
+        /* Mengubah posisi ke sebelah kanan */
+        height: 100vh;
+        width: 250px;
+        background-color: rgba(0, 71, 133, 0.9);
+        padding-top: 60px;
+        transition: transform 0.3s ease;
+        transform: translateX(100%);
+    }
+
+    .navLinks li {
+        margin: 20px 0;
+    }
+
+    /* Saat menu dibuka */
+    .showMenu {
+        transform: translateX(0);
+        /* Slide in dari sebelah kiri saat aktif */
+    }
+}
+
+/* Sidebar dan konten tetap sama */
 .sidebar {
     grid-area: sidebar;
     background-color: #ddd;
@@ -70,4 +107,41 @@
     text-align: center;
     padding: 10px;
     height: 35px;
+}
+
+/* Overlay untuk tampilan Home dan About */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: rgba(0, 71, 133, 0.9);
+    padding-top: 60px;
+    transition: transform 0.3s ease;
+    transform: translateX(100%);
+    /* Mulai di luar layar di sebelah kanan */
+}
+
+.menuContent {
+    color: white;
+    text-align: center;
+}
+
+.closeButton {
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+}
+
+/* Saat menu dibuka */
+.showOverlay {
+    display: block;
+    transform: translateX(0);
+    /* Slide in dari sebelah kanan saat aktif */
 }
